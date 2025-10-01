@@ -1,6 +1,7 @@
 import { Component, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../models/User';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,10 @@ import { User } from '../../models/User';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
+  constructor(private router: Router) {
+
+  }
 
   logUserEvent = output<User>()
   loginMismatch: boolean = false;
@@ -31,6 +36,7 @@ export class LoginComponent {
 
     this.logUserEvent.emit(user)
     this.loginForm.reset()
+    this.router.navigate(["movie/menu"]);
    }
    else{
     this.loginMismatch = true;
