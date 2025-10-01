@@ -1,1 +1,19 @@
-<h2> Movie Form </h2>
+<h1>Add a Movie</h1>
+
+<form [formGroup]="movieForm">
+    <div>
+        <label>Name</label>
+        <input type="text" placeholder="name" formControlName="nameForm">
+    </div>
+    <div>
+        <label>Category</label>
+        <input type="text" placeholder="category" formControlName="categoryForm">
+    </div>
+    <div>
+        <label>Actors</label>
+        <input type="text" placeholder="Actors" formControlName="actorsForm">
+    </div>
+
+    <button type="submit" [disabled]="movieForm"  (click)="onSubmit()">Submit</button>
+
+</form>

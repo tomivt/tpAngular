@@ -10,7 +10,7 @@ import { User } from '../../models/User';
 })
 export class LoginComponent {
 
-  adduserEvent = output<User>()
+  logUserEvent = output<User>()
 
   loginForm: FormGroup = new FormGroup({
     usernameForm: new FormControl('', Validators.required),
@@ -26,9 +26,9 @@ export class LoginComponent {
     }
     console.log(user)
 
-    this.adduserEvent.emit(user)
+    this.logUserEvent.emit(user)
    }
-   
+
     
 
     this.loginForm.reset()
