@@ -18,14 +18,18 @@ export class LoginComponent {
   })
 
   onSubmit(){
+
+   if(this.loginForm.get('usernameForm')?.value == this.loginForm.get('passwordForm')?.value){
     const user: User = {
       login: this.loginForm.value.loginForm,
       password: this.loginForm.value.passwordForm
     }
-
     console.log(user)
 
     this.adduserEvent.emit(user)
+   }
+   
+    
 
     this.loginForm.reset()
   }
