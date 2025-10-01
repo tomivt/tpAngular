@@ -14,5 +14,7 @@ export class LoginComponent {
     passwordForm: new FormControl('', Validators.required)
   })
 
-  
+  onSubmit(){
+    
+  }
 }
