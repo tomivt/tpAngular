@@ -1,7 +1,7 @@
 <h1>Login</h1>
 
 
-<form [FormGroup]="loginForm">
+<form [formGroup]="loginForm">
     <div>
         <label>Username</label>
         <input type="text" placeholder="login" formConrolName="usernameForm">
@@ -12,5 +12,5 @@
         <input type="password" placeholder="password" formConrolName="passwordForm">
     </div>
 
-    <button type="submit" [disabled]="loginForm.invalid" (click)="OnSubmit()">Login</button>
+    <button type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">Login</button>
 </form>
