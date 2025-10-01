@@ -7,12 +7,26 @@
     </div>
     <div>
         <label>Category</label>
-        <input type="text" placeholder="category" formControlName="categoryForm">
+        <select formControlName="categoryForm">
+            <option value="" disabled selected>--Choisir une catégorie--</option>
+            @for (cat of categories; track cat.id) {
+                <option [ngValue]="cat">{{ cat.label }}</option>
+              }
+        </select>
+        
     </div>
-    <div>
-        <label>Actors</label>
-        <input type="text" placeholder="Actors" formControlName="actorsForm">
-    </div>
+    <div formArrayName="actorsForm">
+        <label>Acteurs</label>
+    
+        @for (ctrl of actorsForm.controls; let i = $index; track i) {
+          <div>
+            <input type="text" [formControlName]="i" placeholder="actor name">
+            <button type="button" (click)="supprimerActeur(i)">X</button>
+          </div>
+        }
+    
+        <button type="button" (click)="ajouterActeur()"> Add Actor </button>
+      </div>
 
     <button type="submit" [disabled]="movieForm.invalid"  (click)="onSubmit()">Submit</button>
 

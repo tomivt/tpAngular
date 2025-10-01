@@ -1,6 +1,8 @@
 import { Component, output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Movie } from '../../models/Movie';
+import { Category } from '../../models/Category';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-movie-form',
@@ -12,18 +14,39 @@ export class MovieFormComponent {
 
   addMovieEvent = output<Movie>()
 
+  categories: Category[]= [];
+
+
   movieForm: FormGroup = new FormGroup({
     nameForm: new FormControl('', Validators.required),
     categoryForm: new FormControl('', Validators.required),
-    actorsForm: new FormControl('')
+    actorsForm: new FormArray([])
   })
+
+  constructor(private service: CategoryService){
+    this.service.getCategory().subscribe( data => {
+      this.categories = data
+    })
+  }
+
+  get actorsForm(): FormArray {
+    return this.movieForm.get('actorsForm') as FormArray;
+  }
+
+  ajouterActeur(): void {
+    this.actorsForm.push(new FormControl(''));
+  }
+
+  supprimerActeur(index: number): void {
+    this.actorsForm.removeAt(index);
+  }
 
   onSubmit(){
     const movie: Movie = {
       id: 0,
       name: this.movieForm.value.nameForm,
       category: this.movieForm.value.categoryForm,
-      actors: this.movieForm.value.actorsForm
+      actors: this.actorsForm.value.filter((a: string) => a.trim() !== '')
     }
 
     console.log(movie)
