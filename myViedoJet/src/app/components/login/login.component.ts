@@ -11,6 +11,7 @@ import { User } from '../../models/User';
 export class LoginComponent {
 
   logUserEvent = output<User>()
+  loginMismatch: boolean = false;
 
   loginForm: FormGroup = new FormGroup({
     usernameForm: new FormControl('', Validators.required),
@@ -18,6 +19,8 @@ export class LoginComponent {
   })
 
   onSubmit(){
+
+    this.loginMismatch = false
 
    if(this.loginForm.get('usernameForm')?.value == this.loginForm.get('passwordForm')?.value){
     const user: User = {
@@ -27,10 +30,14 @@ export class LoginComponent {
     console.log(user)
 
     this.logUserEvent.emit(user)
+    this.loginForm.reset()
+   }
+   else{
+    this.loginMismatch = true;
    }
 
     
 
-    this.loginForm.reset()
+    
   }
 }

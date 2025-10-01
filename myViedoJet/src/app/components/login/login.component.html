@@ -13,4 +13,10 @@
     </div>
 
     <button type="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">Login</button>
+
+    @if (loginMismatch) {
+        <div style="color: red;">
+          Login and password are not the same.
+        </div>
+      }
 </form>
