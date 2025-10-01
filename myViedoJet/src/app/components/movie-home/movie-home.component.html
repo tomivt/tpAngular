@@ -1,1 +1,9 @@
 <h2> Movie Home </h2>
+
+@if (movies.length != 0) {
+  @for (movie of movies; track movie.id) {
+    <div>
+      <a routerLink="">{{movie.name}}</a>
+    </div>
+  }
+}
