@@ -15,7 +15,7 @@ export class LoginComponent {
 
   }
 
-  logUserEvent = output<User>()
+  //logUserEvent = output<User>()
   loginMismatch: boolean = false;
 
   loginForm: FormGroup = new FormGroup({
@@ -34,7 +34,7 @@ export class LoginComponent {
     }
     console.log(user)
 
-    this.logUserEvent.emit(user)
+    //this.logUserEvent.emit(user)
     this.loginForm.reset()
     this.router.navigate(["movie/menu"]);
    }

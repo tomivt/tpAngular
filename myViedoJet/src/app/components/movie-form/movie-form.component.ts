@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { Movie } from '../../models/Movie';
 import { Category } from '../../models/Category';
 import { CategoryService } from '../../services/category.service';
+import { VideoService } from '../../services/video.service';
 
 @Component({
   selector: 'app-movie-form',
@@ -12,7 +13,7 @@ import { CategoryService } from '../../services/category.service';
 })
 export class MovieFormComponent {
 
-  addMovieEvent = output<Movie>()
+  //addMovieEvent = output<Movie>()
 
   categories: Category[]= [];
 
@@ -23,7 +24,7 @@ export class MovieFormComponent {
     actorsForm: new FormArray([])
   })
 
-  constructor(private service: CategoryService){
+  constructor(private service: CategoryService, private movieService: VideoService){
     this.service.getCategory().subscribe( data => {
       this.categories = data
     })
@@ -51,7 +52,9 @@ export class MovieFormComponent {
 
     console.log(movie)
 
-    this.addMovieEvent.emit(movie)
+    this.movieService.postMovie(movie).subscribe()
+
+    //this.addMovieEvent.emit(movie)
 
     this.movieForm.reset()
   }

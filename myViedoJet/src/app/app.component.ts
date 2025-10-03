@@ -4,7 +4,7 @@ import {MovieMenuComponent} from './components/movie-menu/movie-menu.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MovieMenuComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

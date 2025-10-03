@@ -15,4 +15,8 @@ export class VideoService {
   getMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.api)
   }
+
+  postMovie(m: Movie): Observable<Movie> {
+    return this.http.post<Movie>(this.api, m)
+  }
 }
