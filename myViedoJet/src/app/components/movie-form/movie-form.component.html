@@ -1,3 +1,4 @@
+<app-movie-menu></app-movie-menu>
 
 <h1>Add a Movie</h1>
 
@@ -14,18 +15,18 @@
                 <option [ngValue]="cat">{{ cat.label }}</option>
               }
         </select>
-        
+
     </div>
     <div formArrayName="actorsForm">
         <label>Acteurs</label>
-    
+
         @for (ctrl of actorsForm.controls; let i = $index; track i) {
           <div>
             <input type="text" [formControlName]="i" placeholder="actor name">
             <button type="button" (click)="supprimerActeur(i)">X</button>
           </div>
         }
-    
+
         <button type="button" (click)="ajouterActeur()"> Add Actor </button>
       </div>
 

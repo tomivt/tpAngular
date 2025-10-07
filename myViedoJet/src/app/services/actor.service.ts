@@ -10,10 +10,21 @@ export class ActorService {
 
   private api: string = "https://68dd25eb7cd1948060ac9cad.mockapi.io/actors"
 
-  constructor(private http: HttpClient) { }
+  public actors: Actor[] = []
 
-  getCategory(): Observable<Actor[]> {
+  constructor(private http: HttpClient) {
+    this.getActors().subscribe(actors => {
+      this.actors = actors;
+      console.log(actors);
+      console.log("id" + this.getActorById(1));
+    })
+  }
+
+  getActors(): Observable<Actor[]> {
     return this.http.get<Actor[]>(this.api)
   }
-  
+
+  getActorById(id: number) {
+    return this.http.get<Actor>(`${this.api}/${id}`)
+  }
 }

@@ -5,7 +5,7 @@
 @if (movies.length != 0) {
   @for (movie of movies; track movie.id) {
     <div>
-      <a [routerLink]="[]" [ngStyle]="{ color: movie.seen ? 'green' : 'black' }">
+      <a [routerLink]="['/movie/' + movie.id]" [ngStyle]="{ color: movie.seen ? 'green' : 'black' }">
         {{ movie.name }}
       </a>
       <button (click)="toggleSeen(movie)">Vu</button>

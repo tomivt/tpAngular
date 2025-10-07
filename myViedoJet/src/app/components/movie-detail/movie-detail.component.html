@@ -1,1 +1,18 @@
-<p>movie-detail works!</p>
+<app-movie-menu></app-movie-menu>
+<!--<h2> {{movie?.name}} detail </h2>
+
+<p> liste</p>
+@for (actor of movie?.actors; track [actor.id, actor.name]) {
+  <p> name: {{actor.name}}</p>
+}
+<p>category{{movie?.category}}</p>
+-->
+
+<h2> Film - {{movie?.name}} </h2>
+<p> Liste d'acteurs : </p>
+
+@for (actor of movie?.actors; track actor.id) {
+  {{actorService.getActorById(actor)}}
+}
+
+<p> Catégorie : {{movie?.category}}</p>

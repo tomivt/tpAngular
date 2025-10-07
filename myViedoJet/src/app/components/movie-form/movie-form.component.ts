@@ -4,10 +4,11 @@ import { Movie } from '../../models/Movie';
 import { Category } from '../../models/Category';
 import { CategoryService } from '../../services/category.service';
 import { VideoService } from '../../services/video.service';
+import {MovieMenuComponent} from '../movie-menu/movie-menu.component';
 
 @Component({
   selector: 'app-movie-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MovieMenuComponent],
   templateUrl: './movie-form.component.html',
   styleUrl: './movie-form.component.css'
 })
