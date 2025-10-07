@@ -9,10 +9,15 @@
 -->
 
 <h2> Film - {{movie?.name}} </h2>
+
 <p> Liste d'acteurs : </p>
 
-@for (actor of movie?.actors; track actor.id) {
-  {{actorService.getActorById(actor.id)}}
+@for (actor of movie?.actors; track [actor.id, actor.name]) {
+  @if (actorService.getActorById(actor.id) | async; as actor) {
+    <p>{{ actor.name }}</p>
+  }
 }
 
 <p> Catégorie : {{movie?.category}}</p>
+
+<p> Note : {{rate.rate}}</p>
