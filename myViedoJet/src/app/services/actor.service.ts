@@ -16,7 +16,7 @@ export class ActorService {
     this.getActors().subscribe(actors => {
       this.actors = actors;
       console.log(actors);
-      console.log("id" + this.getActorById(1));
+      console.log("id" + this.getActorById('1'));
     })
   }
 
@@ -24,7 +24,7 @@ export class ActorService {
     return this.http.get<Actor[]>(this.api)
   }
 
-  getActorById(id: number) {
+  getActorById(id: String) {
     return this.http.get<Actor>(`${this.api}/${id}`)
   }
 }

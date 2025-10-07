@@ -29,9 +29,12 @@ export class MovieDetailComponent {
     this.id = this.route.snapshot.params["id"];
     this.movie = this.movieService.movies.find((m: Movie) => m.id === this.id);
     console.log(this.movie?.name);
-    this.actorService.getActorById(1).subscribe((actor: Actor) => {
+    this.actorService.getActorById('1').subscribe((actor: Actor) => {
       this.actor = actor;
       console.log(this.actor);
     })
   }
+
+  setActor(actor: Actor) {}
+
 }

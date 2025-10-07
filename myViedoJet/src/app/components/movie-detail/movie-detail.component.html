@@ -12,7 +12,7 @@
 <p> Liste d'acteurs : </p>
 
 @for (actor of movie?.actors; track actor.id) {
-  {{actorService.getActorById(actor)}}
+  {{actorService.getActorById(actor.id)}}
 }
 
 <p> Catégorie : {{movie?.category}}</p>

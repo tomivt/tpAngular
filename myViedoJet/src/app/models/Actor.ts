@@ -1,4 +1,4 @@
 export interface Actor {
-    id: number,
+    id: string,
     name: string
 }
