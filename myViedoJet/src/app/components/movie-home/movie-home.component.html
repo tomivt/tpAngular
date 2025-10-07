@@ -1,11 +1,36 @@
 <app-movie-menu></app-movie-menu>
 
-<h1> Bonjour </h1>
-
 <h2>Movie Home</h2>
 
-@if (movies.length != 0) {
-  @for (movie of movies; track movie.id) {
+
+<div>
+  <label>
+    Name :
+    <input type="text" [(ngModel)]="filterName" (input)="applyFilters()" />
+  </label>
+
+  <label>
+    Category :
+    <select [(ngModel)]="filterCategory" (change)="applyFilters()">
+      <option [ngValue]="null">All</option>
+      @for (cat of categories ; track cat.id) {
+        <option [ngValue]="cat">{{ cat.label }}</option>
+      }
+    </select>
+  </label>
+
+  <label>
+    Vu :
+    <input type="checkbox" [(ngModel)]="filterSeen" (change)="applyFilters()" 
+           [indeterminate]="filterSeen === null" 
+           (click)="filterSeen = filterSeen === null ? true : filterSeen === true ? false : null" />
+
+  </label>
+</div>
+
+
+@if (filteredMovies.length > 0) {
+  @for (movie of filteredMovies ; track movie.id) {
     <div>
       <a [routerLink]="['/movie/' + movie.id]" [ngStyle]="{ color: movie.seen ? 'green' : 'black' }">
         {{ movie.name }}
@@ -13,5 +38,4 @@
       <button (click)="toggleSeen(movie)">Vu</button>
     </div>
   }
-}
-
+} 
